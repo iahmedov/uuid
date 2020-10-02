@@ -107,8 +107,8 @@ func (g *uuidGeneratorV2) Next() UUID {
 	rand2 := g.r.Int63n(g.max60bit)
 	rand3 := g.r.Int31n(g.max14bit)
 
-	rand1Bytes := *(*[8]byte)(unsafe.Pointer(&rand1))
-	rand2Bytes := *(*[8]byte)(unsafe.Pointer(&rand2))
+	rand1Bytes := *(*[12]byte)(unsafe.Pointer(&rand1))
+	rand2Bytes := *(*[12]byte)(unsafe.Pointer(&rand2))
 	rand3Bytes := *(*[4]byte)(unsafe.Pointer(&rand3))
 	uuid.BitSet(66, 126, rand1Bytes[:])
 	uuid.BitSet(126, 186, rand2Bytes[:])
